@@ -137,7 +137,7 @@ namespace RumahSakitApp
 
         public void DaftarOrang()
         {
-            Console.WriteLine("\n--- Daftar Orang di Rumah Sakit ---");
+            Console.WriteLine("\nDaftar Orang di Rumah Sakit :");
             foreach (var orang in daftarOrang)
             {
                 orang.InfoOrang();
@@ -156,7 +156,6 @@ namespace RumahSakitApp
                     Console.WriteLine("  Peran: Pengunjung/Staff Umum");
                 }
             }
-            Console.WriteLine("-----------------------------------\n");
         }
 
         public List<Orang> GetDaftarOrang()
@@ -169,59 +168,48 @@ namespace RumahSakitApp
     {
         static void Main(string[] args)
         {
-            // 5.1 Buat objek rumah sakit
             RumahSakit rsHarapan = new RumahSakit();
 
-            Console.WriteLine("=== INISIALISASI DATA ===");
-            // 5.2 Buat beberapa objek orang
+            Console.WriteLine("INISIALISASI DATA");
+
             Orang umum = new Orang("Budi", 45);
             Dokter dokterAndi = new Dokter("Andi", 35, "Spesialis Penyakit Dalam");
             Perawat perawatSiti = new Perawat("Siti", 28);
             PasienAnak anakToni = new PasienAnak("Toni", 7, "Demam Tinggi");
             PasienDewasa dewasaRudi = new PasienDewasa("Rudi", 50, "Sakit Perut Kronis");
 
-            // 5.3 Tambahkan ke rumah sakit
             rsHarapan.TambahOrang(umum);
             rsHarapan.TambahOrang(dokterAndi);
             rsHarapan.TambahOrang(perawatSiti);
             rsHarapan.TambahOrang(anakToni);
             rsHarapan.TambahOrang(dewasaRudi);
 
-            // 5.4 Tampilkan semua data
             rsHarapan.DaftarOrang();
 
-            Console.WriteLine("=== DEMONSTRASI POLYMORPHISM (Method Aktivitas) ===");
-            // 5.5 Demonstrasikan polymorphism
-            // Memanggil method Aktivitas() dari list Orang di RumahSakit
+            Console.WriteLine("DEMONSTRASI POLYMORPHISM (Method Aktivitas)");
+            // Demonstrasikan polymorphism
             foreach (var orang in rsHarapan.GetDaftarOrang())
             {
-                // Method Aktivitas akan dipanggil sesuai dengan tipe objek aslinya (override)
+                // override
                 Console.Write($"{orang.Nama}: ");
                 orang.Aktivitas();
             }
 
-            Console.WriteLine("\n=== MEMANGGIL METHOD KHUSUS ===");
-            // 5.6 Panggil method khusus
+            Console.WriteLine("\nMEMANGGIL METHOD KHUSUS");
 
-            // Method dari TenagaMedis
             dokterAndi.CekSpesialis();
 
-            // Method dari Pasien
             dewasaRudi.CekKeluhan();
 
-            // Method spesifik Dokter
             dokterAndi.Diagnosa(dewasaRudi);
 
-            // Method spesifik Perawat
             perawatSiti.CekPasien(anakToni);
 
-            // Method spesifik PasienAnak
             anakToni.Menangis();
 
-            // Method spesifik PasienDewasa
             dewasaRudi.Konsultasi();
 
-            Console.ReadLine(); // Menahan console agar tidak langsung tertutup
+            Console.ReadLine(); 
         }
     }
 }
